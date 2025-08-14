@@ -30,8 +30,9 @@ class Task extends Model
         return $this->belongsTo(Workspace::class); 
     }
 
-    public function isCompleted(): bool { 
-        return !is_null($this->completed_at); 
+    public function isCompleted()
+    {
+        return (bool) $this->is_completed;
     }
 
     public function humanRemaining(): string {

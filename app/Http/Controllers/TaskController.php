@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +35,7 @@ class TaskController extends Controller
         $data = $r->validate([
             'title' => ['required','string','max:150'],
             'description' => ['nullable','string'],
-            'deadline' => ['required','date','after:now'],
+            'deadline' => 'required|date|after_or_equal:now',
         ]);
         $workspace->tasks()->create($data);
         return redirect()->route('workspaces.show',$workspace)->with('ok','Task created');
@@ -63,7 +66,7 @@ class TaskController extends Controller
         $data = $r->validate([
             'title' => ['required','string','max:150'],
             'description' => ['nullable','string'],
-            'deadline' => ['required','date'],
+            'deadline' => 'required|date|after_or_equal:now',
             'completed' => ['nullable','boolean'],
         ]);
     
@@ -85,5 +88,15 @@ class TaskController extends Controller
         $this->authorize('delete', $task);
         $task->delete();
         return back()->with('ok','Task deleted');
+    }
+
+    public function toggle(Workspace $workspace, Task $task)
+    {
+        $task->is_completed = ! $task->is_completed;
+        $task->save();
+
+        return redirect()
+            ->route('workspaces.show', $workspace)
+            ->with('success', 'Task status updated.');
     }
 }
