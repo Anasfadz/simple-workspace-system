@@ -59,7 +59,7 @@ class WorkspaceController extends Controller
         $this->authorize('update', $workspace);
         $data = $r->validate(['name' => ['required','string','max:100']]);
         $workspace->update($data);
-        return back()->with('ok','Updated');
+        return redirect ('/workspaces')->with('ok','Updated');
     }
 
     /**

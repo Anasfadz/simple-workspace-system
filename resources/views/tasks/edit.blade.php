@@ -42,14 +42,6 @@
                  required />
         </div>
 
-        <!-- Completed Checkbox -->
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="completed" value="1" 
-                 {{ $task->isCompleted() ? 'checked' : '' }}
-                 class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-          <span class="text-gray-700">Mark as completed</span>
-        </div>
-
         <!-- Button -->
         <div class="flex justify-end">
           <x-primary-button class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
