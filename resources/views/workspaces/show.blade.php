@@ -4,16 +4,10 @@
       <h2 class="font-semibold text-2xl text-gray-800">
         {{ $workspace->name }}
       </h2>
-      <div class="flex gap-2">
-        <a href="{{ route('workspaces.index') }}" 
-           class="px-4 py-2 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700 transition">
-          &larr; Back to Workspaces
-        </a>
-        <a href="{{ route('workspaces.tasks.create', $workspace) }}" 
-           class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
-          + Add Task
-        </a>
-      </div>
+      <a href="{{ route('workspaces.tasks.create', $workspace) }}" 
+         class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">
+        + Add Task
+      </a>
     </div>
   </x-slot>
 

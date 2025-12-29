@@ -24,14 +24,11 @@
           @forelse($workspaces as $ws)
             <tr class="border-b hover:bg-gray-50 transition">
               <td class="px-6 py-4 text-gray-800 font-medium">
+                <a href="{{ route('workspaces.show', $ws) }}" class="hover:underline text-indigo-600">
                   {{ $ws->name }}
+                </a>
               </td>
               <td class="px-6 py-4 text-right space-x-2">
-                <!-- View -->
-                <a href="{{ route('workspaces.show', $ws) }}" 
-                   class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded hover:bg-green-200 transition">
-                  View
-                </a>
                 <!-- Edit -->
                 <a href="{{ route('workspaces.edit', $ws) }}" 
                    class="px-3 py-1 text-sm text-blue-600 bg-blue-100 rounded hover:bg-blue-200 transition">
