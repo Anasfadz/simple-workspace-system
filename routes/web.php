@@ -5,7 +5,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('portfolio'))->name('home');
+Route::get('/', function(){
+    return redirect()->route('login');
+});
 
 Route::middleware(['auth'])->group(function () {
 
